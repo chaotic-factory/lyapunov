@@ -1,6 +1,6 @@
 # lyapunov
 
-### How to Build & Run\*\*
+### How to Build & Run**
 
 ```bash
  setup.py sdist bdist_wheel
@@ -27,6 +27,43 @@
    lyapunov --port 3000
    ```
    (Backend serves frontend at `/`, API at `/api/*`, WebSockets at `/ws/*`.), api docs at `/api/docs`
+
+---
+
+## Key Features
+
+Lyapunov is a **realtime, interactive dashboard** for exploring nonlinear dynamics, recording multichannel time series, and training models. Here's what you can do:
+
+### 🎯 Live Data Visualization
+
+Experience real-time 2D time series and 3D phase-space trajectories with interactive controls.
+
+![Overall playground view showing all features](./assets/lyapunov-light.png)
+
+### 📊 Channel Control & Lyapunov Analysis
+
+Toggle channels (X/Y/Z), adjust scale and interpolation, and monitor the live Lyapunov exponent with state classification (Stable / Periodic / Quasi-Periodic / Chaotic).
+
+![Select channels, recording & playback buttons; Lyapunov exponent readout](./assets/lyapunov-dark.png)
+
+### 📹 Recording & Playback
+
+Record multichannel data with custom parameters (e.g., system parameters like Lorenz σ, ρ, β) and replay with floating playback controls.
+
+### 🧠 Model Training
+
+Train **SINDy** (Sparse Identification of Nonlinear Dynamics) or **Reservoir Computing** models directly from your recordings.
+
+### 🔍 Analysis Tools
+
+Visualize bifurcation diagrams, Poincaré maps, and discover equations from data.
+
+---
+
+**For detailed documentation, images, and walkthroughs, see:**
+- 📖 **[Full Documentation](https://github.com/chaotic-factory/lyapunov/tree/main/docs/docs)** — Feature walkthrough with screenshots
+- 🚀 **[Quickstart Guide](https://github.com/chaotic-factory/lyapunov/blob/main/docs/docs/index.md)** — Installation and first steps
+- 💾 **[Backend API Reference](https://github.com/chaotic-factory/lyapunov/blob/main/docs/docs/index.md#5-backend-api-for-integrators)** — WebSocket streaming, training endpoints
 
 ---
 
