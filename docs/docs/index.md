@@ -275,7 +275,6 @@ _Section crossings reveal periodic / quasi‑periodic / chaotic structure._
 ### 5.3 Train SINDy
 
 - `POST /api/sindy/train` → `SindyTrainResponse`
-
   - Accepts a `recording` (x,y,z time series) and `axes` mapping.
   - Uses **PySINDy** when available; falls back to linear model otherwise.
   - Returns equations, metrics (MSE, R², sparsity), per‑equation feature table, and aligned prediction.
@@ -283,7 +282,6 @@ _Section crossings reveal periodic / quasi‑periodic / chaotic structure._
 ### 5.4 Train Reservoir (Echo State Network)
 
 - `POST /api/rc/train` → `SindyTrainResponse`
-
   - Requires **reservoirpy**. Teacher forcing on train split; autonomous rollout on test split.
   - Returns ESN summary in `equations`, plus metrics over the test region.
 
@@ -338,5 +336,3 @@ docs/
 
 - [https://www.sciencedirect.com/science/article/pii/S3050517825000711](https://www.sciencedirect.com/science/article/pii/S3050517825000711)
 - [https://www.sciencedirect.com/science/article/abs/pii/S3050517825000711](https://www.sciencedirect.com/science/article/abs/pii/S3050517825000711)
-
-> **Note:** As requested, the README omits maintainer‑oriented _build‑the‑docs_ steps, but the **documentation site** structure above is ready for publishing.
