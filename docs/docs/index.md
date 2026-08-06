@@ -4,11 +4,15 @@
 
 A realtime, interactive dashboard for exploring nonlinear dynamics, recording multichannel time series, and training models (SINDy / Reservoir Computing). This GitHub-facing guide focuses on **getting started**, **CLI usage**, **configuration**, and a **feature‑by‑feature walkthrough with images**.
 
-> **Version:** 1.0 · **Last updated:** {{ git_revision_date_localized or "—" }}
+> **Version:** 1.0 · **Last updated:** May 2026
+
+**Collaborators:** [Mann Acharya](https://www.linkedin.com/in/mann-acharya/) · [Dhruv Wadhwa](https://www.linkedin.com/in/dhruv-wadhwa-244423192/) · [Dr. Thounaojam Umeshkanta Singh](https://www.linkedin.com/in/dr-thounaojam-umeshkanta-singh/)
 
 <br clear="both"/>
 
 ---
+
+![Lyapunov Dashboard overview](images/1_playground_overall.png)
 
 ## 0) TL;DR Quickstart
 
@@ -316,54 +320,7 @@ pip install pysindy reservoirpy scikit-learn
 
 ---
 
-## 8) MkDocs Site (for Open‑Source Docs)
-
-Add a `docs/mkdocs.yml` (example below) and keep pages in `docs/`. This keeps the README lean while publishing rich docs.
-
-```yaml
-site_name: Lyapunov Lab
-repo_url: https://github.com/<org>/<repo>
-repo_name: <org>/<repo>
-theme:
-  name: material
-  features:
-    - navigation.instant
-    - navigation.tabs
-    - content.code.copy
-    - toc.integrate
-markdown_extensions:
-  - admonition
-  - toc:
-      permalink: true
-nav:
-  - Home: index.md
-  - Quickstart: quickstart.md
-  - Features: features.md
-  - Configuration: configuration.md
-  - Backend API: backend-api.md
-  - Streaming (Hardware/UDP): streaming.md
-  - CLI: cli.md
-  - Troubleshooting: troubleshooting.md
-  - Contributing: contributing.md
-```
-
-Suggested page stubs:
-
-- `docs/index.md` — project pitch + single left logo.
-- `docs/quickstart.md` — `pip install` + `lyapunov-lab start` + simulator.
-- `docs/features.md` — the walkthrough with images (Section 4).
-- `docs/configuration.md` — env vars, WS URL, static mount, ports.
-- `docs/backend-api.md` — endpoints & schemas (Section 5).
-- `docs/streaming.md` — UDP formats, microcontroller & CSV simulator.
-- `docs/cli.md` — command/flags.
-- `docs/troubleshooting.md` — common pitfalls (CORS, UDP blocked, CSV format).
-- `docs/contributing.md` — dev setup, code style, tests, release.
-
-> Keep **build commands** for maintainers in `CONTRIBUTING.md`; the public docs describe _usage_, not how to build the docs themselves.
-
----
-
-## 9) Repo Layout (short)
+## 8) Repo Layout (short)
 
 ```
 lyapunov_lab/

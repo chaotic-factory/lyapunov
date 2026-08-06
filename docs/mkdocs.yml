@@ -1,5 +1,28 @@
-site_name: lyapunov
+site_name: Lyapunov Lab
+site_url: https://chaotic-factory.github.io/lyaponov/
+repo_url: https://github.com/chaotic-factory/lyaponov
+repo_name: chaotic-factory/lyaponov
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - content.code.copy
+    - toc.integrate
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
 nav:
   - Home: index.md
-  - About: about.md
-theme: readthedocs
