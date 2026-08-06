@@ -1,5 +1,7 @@
 # Lyapunov Dashboard — User Guide (GitHub)
 
+**Repository:** [github.com/chaotic-factory/lyaponov](https://github.com/chaotic-factory/lyaponov)
+
 <img src="images/lyapunov-logo.png" alt="Lyapunov Logo" width="120" align="left" style="margin-right:14px; margin-bottom:6px"/>
 
 A realtime, interactive dashboard for exploring nonlinear dynamics, recording multichannel time series, and training models (SINDy / Reservoir Computing). This GitHub-facing guide focuses on **getting started**, **CLI usage**, **configuration**, and a **feature‑by‑feature walkthrough with images**.
@@ -7,6 +9,8 @@ A realtime, interactive dashboard for exploring nonlinear dynamics, recording mu
 > **Version:** 1.0 · **Last updated:** May 2026
 
 **Collaborators:** [Mann Acharya](https://www.linkedin.com/in/mann-acharya/) · [Dhruv Wadhwa](https://www.linkedin.com/in/dhruv-wadhwa-244423192/) · [Dr. Thounaojam Umeshkanta Singh](https://www.linkedin.com/in/dr-thounaojam-umeshkanta-singh/)
+
+**GitHub:** [chaotic-factory/lyaponov](https://github.com/chaotic-factory/lyaponov)
 
 <br clear="both"/>
 
