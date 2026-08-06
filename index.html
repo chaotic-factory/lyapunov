@@ -1,136 +1,638 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
-      <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>lyapunov</title>
-    <link rel="stylesheet" href="css/theme.css" />
-    <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Home";
-        var mkdocs_page_input_path = "index.md";
-        var mkdocs_page_url = null;
-      </script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://chaotic-factory.github.io/lyaponov/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
+    
+      
+        <title>Lyapunov Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> lyapunov
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#0-tldr-quickstart">0) TL;DR Quickstart</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#1-cli-reference">1) CLI Reference</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#2-configure-the-frontend-websocket">2) Configure the Frontend (WebSocket)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#3-stream-from-hardware-udp-server-websocket">3) Stream from Hardware (UDP → Server → WebSocket)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#31-microcontroller-example-wifi-udp">3.1 Microcontroller example (Wi‑Fi UDP)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#32-desktop-simulator-csv-udp">3.2 Desktop simulator (CSV → UDP)</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#4-featurebyfeature-walkthrough-with-images">4) Feature‑by‑Feature Walkthrough (with Images)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#41-overview">4.1 Overview</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#42-channels-options-lyapunov">4.2 Channels, Options &amp; Lyapunov</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#43-visualizations">4.3 Visualizations</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#44-recording-playback">4.4 Recording &amp; Playback</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#45-analysis">4.5 Analysis</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#46-training">4.6 Training</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#5-backend-api-for-integrators">5) Backend API (for Integrators)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#51-health">5.1 Health</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#52-live-stream">5.2 Live stream</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#53-train-sindy">5.3 Train SINDy</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#54-train-reservoir-echo-state-network">5.4 Train Reservoir (Echo State Network)</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#6-poweruser-tips">6) Power‑User Tips</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#7-installation-dependencies">7) Installation &amp; Dependencies</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#8-mkdocs-site-for-opensource-docs">8) MkDocs Site (for Open‑Source Docs)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#9-repo-layout-short">9) Repo Layout (short)</a>
-    </li>
-    </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="" href="about.md">About</a>
-                </li>
-              </ul>
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lyapunov-dashboard-user-guide-github" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Lyapunov Lab" class="md-header__button md-logo" aria-label="Lyapunov Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lyapunov Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">lyapunov</a>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
         
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
       </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Home</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chaotic-factory/lyaponov" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chaotic-factory/lyaponov
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
-                <h1 id="lyapunov-dashboard-user-guide-github">Lyapunov Dashboard — User Guide (GitHub)</h1>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Lyapunov Lab" class="md-nav__button md-logo" aria-label="Lyapunov Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lyapunov Lab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chaotic-factory/lyaponov" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chaotic-factory/lyaponov
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-tldr-quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0) TL;DR Quickstart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cli-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) CLI Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-the-frontend-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Configure the Frontend (WebSocket)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-stream-from-hardware-udp-server-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Stream from Hardware (UDP → Server → WebSocket)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Stream from Hardware (UDP → Server → WebSocket)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-microcontroller-example-wifi-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Microcontroller example (Wi‑Fi UDP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-desktop-simulator-csv-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Desktop simulator (CSV → UDP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-featurebyfeature-walkthrough-with-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Feature‑by‑Feature Walkthrough (with Images)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4) Feature‑by‑Feature Walkthrough (with Images)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-channels-options-lyapunov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Channels, Options &amp; Lyapunov
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-visualizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Visualizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-recording-playback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Recording &amp; Playback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-backend-api-for-integrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Backend API (for Integrators)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) Backend API (for Integrators)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-live-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Live stream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-train-sindy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Train SINDy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-train-reservoir-echo-state-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Train Reservoir (Echo State Network)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-poweruser-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) Power‑User Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-installation-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7) Installation &amp; Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-repo-layout-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) Repo Layout (short)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lyapunov-dashboard-user-guide-github">Lyapunov Dashboard — User Guide (GitHub)<a class="headerlink" href="#lyapunov-dashboard-user-guide-github" title="Permanent link">&para;</a></h1>
 <p><img src="images/lyapunov-logo.png" alt="Lyapunov Logo" width="120" align="left" style="margin-right:14px; margin-bottom:6px"/></p>
 <p>A realtime, interactive dashboard for exploring nonlinear dynamics, recording multichannel time series, and training models (SINDy / Reservoir Computing). This GitHub-facing guide focuses on <strong>getting started</strong>, <strong>CLI usage</strong>, <strong>configuration</strong>, and a <strong>feature‑by‑feature walkthrough with images</strong>.</p>
 <blockquote>
-<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> {{ git_revision_date_localized or "—" }}</p>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> May 2026</p>
 </blockquote>
+<p><strong>Collaborators:</strong> <a href="https://www.linkedin.com/in/mann-acharya/">Mann Acharya</a> · <a href="https://www.linkedin.com/in/dhruv-wadhwa-244423192/">Dhruv Wadhwa</a> · <a href="https://www.linkedin.com/in/dr-thounaojam-umeshkanta-singh/">Dr. Thounaojam Umeshkanta Singh</a></p>
 <p><br clear="both"/></p>
 <hr />
-<h2 id="0-tldr-quickstart">0) TL;DR Quickstart</h2>
+<p><img alt="Lyapunov Dashboard overview" src="images/1_playground_overall.png" /></p>
+<h2 id="0-tldr-quickstart">0) TL;DR Quickstart<a class="headerlink" href="#0-tldr-quickstart" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash"># Install the Python package
 pip install lyapunov-lab
 
@@ -142,7 +644,7 @@ lyapunov-lab start
 <li>For remote/container deployments, see <strong>Configuration</strong> below.</li>
 </ul>
 <hr />
-<h2 id="1-cli-reference">1) CLI Reference</h2>
+<h2 id="1-cli-reference">1) CLI Reference<a class="headerlink" href="#1-cli-reference" title="Permanent link">&para;</a></h2>
 <p>The package exposes a single top-level command with one option (port). The CLI boots the <strong>FastAPI backend</strong> (and serves the prebuilt frontend if available).</p>
 <pre><code class="language-bash"># Start the backend (FastAPI via uvicorn)
 lyapunov-lab start --port 3000
@@ -157,7 +659,7 @@ lyapunov-lab start --port 3000
 <p>The frontend static build is auto-mounted at <code>/</code> if found at <code>lyapunov_lab/frontend/out</code>.</p>
 </blockquote>
 <hr />
-<h2 id="2-configure-the-frontend-websocket">2) Configure the Frontend (WebSocket)</h2>
+<h2 id="2-configure-the-frontend-websocket">2) Configure the Frontend (WebSocket)<a class="headerlink" href="#2-configure-the-frontend-websocket" title="Permanent link">&para;</a></h2>
 <p>The dashboard consumes a live stream over WebSocket at <strong><code>/api/stream</code></strong> from the backend (same origin by default). If you deploy the frontend separately, point it to your backend origin.</p>
 <p>Recommended snippet in your UI to allow env-based configuration:</p>
 <pre><code class="language-ts">// src/PlaygroundView.tsx
@@ -171,13 +673,13 @@ export const WS_URL =
 <p>Replace the file path/link to match your repo, e.g. <a href="https://github.com/&lt;org&gt;/&lt;repo&gt;/blob/main/src/PlaygroundView.tsx"><code>src/PlaygroundView.tsx</code></a>.</p>
 </blockquote>
 <hr />
-<h2 id="3-stream-from-hardware-udp-server-websocket">3) Stream from Hardware (UDP → Server → WebSocket)</h2>
+<h2 id="3-stream-from-hardware-udp-server-websocket">3) Stream from Hardware (UDP → Server → WebSocket)<a class="headerlink" href="#3-stream-from-hardware-udp-server-websocket" title="Permanent link">&para;</a></h2>
 <p><strong>UDP ingestion</strong> → backend buffers the latest batch → pushes to all WebSocket clients at <code>/api/stream</code>.</p>
 <ul>
 <li>UDP listen address: <code>0.0.0.0:5005</code></li>
 <li>Packet format: <strong>JSON array</strong> of objects with <code>x</code>, <code>y</code>, <code>z</code> (you can add <code>t</code>/<code>time</code>/<code>timestamp</code> too)</li>
 </ul>
-<h3 id="31-microcontroller-example-wifi-udp">3.1 Microcontroller example (Wi‑Fi UDP)</h3>
+<h3 id="31-microcontroller-example-wifi-udp">3.1 Microcontroller example (Wi‑Fi UDP)<a class="headerlink" href="#31-microcontroller-example-wifi-udp" title="Permanent link">&para;</a></h3>
 <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
 #include &lt;WiFiUdp.h&gt;
 #include &lt;hardware/adc.h&gt;
@@ -278,7 +780,7 @@ void loop() {
   bufferReady = false;
 }
 </code></pre>
-<h3 id="32-desktop-simulator-csv-udp">3.2 Desktop simulator (CSV → UDP)</h3>
+<h3 id="32-desktop-simulator-csv-udp">3.2 Desktop simulator (CSV → UDP)<a class="headerlink" href="#32-desktop-simulator-csv-udp" title="Permanent link">&para;</a></h3>
 <p>Use the included helper to test without hardware:</p>
 <pre><code class="language-bash">python scripts/simulate_device.py \
   # expects CSV with columns: x,y,z
@@ -290,15 +792,15 @@ CSV_PATH = &quot;scripts/logs/lorenz_sample_output.csv&quot;
 SEND_INTERVAL = 0.01
 </code></pre>
 <hr />
-<h2 id="4-featurebyfeature-walkthrough-with-images">4) Feature‑by‑Feature Walkthrough (with Images)</h2>
+<h2 id="4-featurebyfeature-walkthrough-with-images">4) Feature‑by‑Feature Walkthrough (with Images)<a class="headerlink" href="#4-featurebyfeature-walkthrough-with-images" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Place images under <code>docs/images/</code> (or adjust paths). Keep the single logo at top‑left.</p>
 </blockquote>
-<h3 id="41-overview">4.1 Overview</h3>
+<h3 id="41-overview">4.1 Overview<a class="headerlink" href="#41-overview" title="Permanent link">&para;</a></h3>
 <p><img alt="Overall playground view showing all features" src="images/1_playground_overall.png" />
 <em>The main Playground exposes live plots, 3D phase‑space, recording, and playback controls.</em></p>
 <p><img alt="Playground in light mode" src="images/1_playground_overall_light_mode.png" /></p>
-<h3 id="42-channels-options-lyapunov">4.2 Channels, Options &amp; Lyapunov</h3>
+<h3 id="42-channels-options-lyapunov">4.2 Channels, Options &amp; Lyapunov<a class="headerlink" href="#42-channels-options-lyapunov" title="Permanent link">&para;</a></h3>
 <p><img alt="Select channels (x,y,z), recording &amp; playback buttons; also shows Lyapunov exponent readout" src="images/2_playground_options.png" /></p>
 <ul>
 <li>Toggle X / Y / Z channels</li>
@@ -306,14 +808,14 @@ SEND_INTERVAL = 0.01
 <li>Start/stop Recording; set Baseline</li>
 <li>Live Lyapunov exponent &amp; state classifier <em>(Stable / Periodic / Quasi‑Periodic / Chaotic)</em></li>
 </ul>
-<h3 id="43-visualizations">4.3 Visualizations</h3>
+<h3 id="43-visualizations">4.3 Visualizations<a class="headerlink" href="#43-visualizations" title="Permanent link">&para;</a></h3>
 <p><strong>Time series (fullscreen)</strong>
 <img alt="Fullscreen time series plot of x, y, z vs t" src="images/2_playground_timeseries_fullscreen.png" />
 <em>Click the maximize button to expand to fullscreen.</em></p>
 <p><strong>Phase‑space trajectory (fullscreen)</strong>
 <img alt="Fullscreen phase-space 3D trajectory / attractor view" src="images/2_playground_trajectory_phase_space_fullscreen.png" />
 <em>Orbit to rotate • scroll to zoom • right-drag to pan.</em></p>
-<h3 id="44-recording-playback">4.4 Recording &amp; Playback</h3>
+<h3 id="44-recording-playback">4.4 Recording &amp; Playback<a class="headerlink" href="#44-recording-playback" title="Permanent link">&para;</a></h3>
 <p><img alt="How to start recording" src="images/3_recording_mode_start.png" />
 <img alt="Enter a name when saving" src="images/3_recording_mode_save_screen_enter_name.png" />
 <img alt="Saving recording with custom parameters supported" src="images/3_recording_mode_save_screen_custom_param.png" /></p>
@@ -322,52 +824,44 @@ SEND_INTERVAL = 0.01
 </blockquote>
 <p><img alt="Playback a selected recording" src="images/3_recordings_play_selected_data.png" />
 Floating <strong>Playback Controls</strong> allow play/pause, skip, scrubbing. Timeline in seconds (assuming 100 Hz).</p>
-<h3 id="45-analysis">4.5 Analysis</h3>
+<h3 id="45-analysis">4.5 Analysis<a class="headerlink" href="#45-analysis" title="Permanent link">&para;</a></h3>
 <p><img alt="Bifurcation diagram vs parameter" src="images/plot_bifurcation.png" />
 <em>Visualizes qualitative regime changes (e.g., period-doubling routes to chaos).</em></p>
 <p><img alt="Poincaré map (work in progress)" src="images/plot_poincare.png" />
 <em>Section crossings reveal periodic / quasi‑periodic / chaotic structure.</em></p>
-<h3 id="46-training">4.6 Training</h3>
+<h3 id="46-training">4.6 Training<a class="headerlink" href="#46-training" title="Permanent link">&para;</a></h3>
 <p><img alt="Training page showing multiple model options" src="images/train_page.png" />
 <img alt="Model selection (SINDy / Reservoir)" src="images/train_model_options.png" />
 <img alt="Prediction vs real overlay and one‑to‑one playback" src="images/train_prediction_vs_real.png" />
 <img alt="Training metrics: error, sparsity, etc." src="images/train_metrics.png" />
 <img alt="Equation discovery for SINDy" src="images/train_eq_discovery.png" /></p>
 <hr />
-<h2 id="5-backend-api-for-integrators">5) Backend API (for Integrators)</h2>
+<h2 id="5-backend-api-for-integrators">5) Backend API (for Integrators)<a class="headerlink" href="#5-backend-api-for-integrators" title="Permanent link">&para;</a></h2>
 <p><strong>Base URL:</strong> <code>http://&lt;host&gt;:&lt;port&gt;</code> (default port from CLI is <code>3000</code>)</p>
-<h3 id="51-health">5.1 Health</h3>
+<h3 id="51-health">5.1 Health<a class="headerlink" href="#51-health" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>GET /api/health</code> → <code>{ status: "ok", sindy: &lt;bool&gt; }</code></li>
 </ul>
-<h3 id="52-live-stream">5.2 Live stream</h3>
+<h3 id="52-live-stream">5.2 Live stream<a class="headerlink" href="#52-live-stream" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>WS /api/stream</code> → pushes <code>{ samples: [ {x,y,z,(t?)}... ], timestamp }</code></li>
 </ul>
-<h3 id="53-train-sindy">5.3 Train SINDy</h3>
+<h3 id="53-train-sindy">5.3 Train SINDy<a class="headerlink" href="#53-train-sindy" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><code>POST /api/sindy/train</code> → <code>SindyTrainResponse</code></p>
-</li>
-<li>
-<p>Accepts a <code>recording</code> (x,y,z time series) and <code>axes</code> mapping.</p>
-</li>
+<li><code>POST /api/sindy/train</code> → <code>SindyTrainResponse</code></li>
+<li>Accepts a <code>recording</code> (x,y,z time series) and <code>axes</code> mapping.</li>
 <li>Uses <strong>PySINDy</strong> when available; falls back to linear model otherwise.</li>
 <li>Returns equations, metrics (MSE, R², sparsity), per‑equation feature table, and aligned prediction.</li>
 </ul>
-<h3 id="54-train-reservoir-echo-state-network">5.4 Train Reservoir (Echo State Network)</h3>
+<h3 id="54-train-reservoir-echo-state-network">5.4 Train Reservoir (Echo State Network)<a class="headerlink" href="#54-train-reservoir-echo-state-network" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><code>POST /api/rc/train</code> → <code>SindyTrainResponse</code></p>
-</li>
-<li>
-<p>Requires <strong>reservoirpy</strong>. Teacher forcing on train split; autonomous rollout on test split.</p>
-</li>
+<li><code>POST /api/rc/train</code> → <code>SindyTrainResponse</code></li>
+<li>Requires <strong>reservoirpy</strong>. Teacher forcing on train split; autonomous rollout on test split.</li>
 <li>Returns ESN summary in <code>equations</code>, plus metrics over the test region.</li>
 </ul>
 <p><strong>Models / Schemas:</strong> <code>Recording</code>, <code>Axes</code>, <code>SindyTrainRequest</code>, <code>SindyTrainResponse</code>, <code>Metrics</code>, <code>FeatureInfo</code> (see backend code for full definitions).</p>
 <hr />
-<h2 id="6-poweruser-tips">6) Power‑User Tips</h2>
+<h2 id="6-poweruser-tips">6) Power‑User Tips<a class="headerlink" href="#6-poweruser-tips" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Orbit controls</strong> (3D): drag to orbit • scroll to zoom • right‑drag to pan.</li>
 <li><strong>Fullscreen</strong>: click the maximize icon on charts.</li>
@@ -375,7 +869,7 @@ Floating <strong>Playback Controls</strong> allow play/pause, skip, scrubbing. T
 <li><strong>Recording format (frontend)</strong>: stored in <code>localStorage</code> <code>nld_recordings</code> with <code>name</code>, <code>timestamp</code>, <code>duration</code>, <code>data: Array&lt;Record&lt;string, number&gt;&gt;</code>, optional <code>parameters</code>, <code>initialState</code>.</li>
 </ul>
 <hr />
-<h2 id="7-installation-dependencies">7) Installation &amp; Dependencies</h2>
+<h2 id="7-installation-dependencies">7) Installation &amp; Dependencies<a class="headerlink" href="#7-installation-dependencies" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash"># from PyPI
 pip install lyapunov-lab
 
@@ -389,50 +883,7 @@ lyapunov-lab start --port 3000
 <p>If PySINDy/ReservoirPy aren’t installed, the backend will gracefully fall back to the linear baseline or disable the ESN endpoint.</p>
 </blockquote>
 <hr />
-<h2 id="8-mkdocs-site-for-opensource-docs">8) MkDocs Site (for Open‑Source Docs)</h2>
-<p>Add a <code>docs/mkdocs.yml</code> (example below) and keep pages in <code>docs/</code>. This keeps the README lean while publishing rich docs.</p>
-<pre><code class="language-yaml">site_name: Lyapunov Lab
-repo_url: https://github.com/&lt;org&gt;/&lt;repo&gt;
-repo_name: &lt;org&gt;/&lt;repo&gt;
-theme:
-  name: material
-  features:
-    - navigation.instant
-    - navigation.tabs
-    - content.code.copy
-    - toc.integrate
-markdown_extensions:
-  - admonition
-  - toc:
-      permalink: true
-nav:
-  - Home: index.md
-  - Quickstart: quickstart.md
-  - Features: features.md
-  - Configuration: configuration.md
-  - Backend API: backend-api.md
-  - Streaming (Hardware/UDP): streaming.md
-  - CLI: cli.md
-  - Troubleshooting: troubleshooting.md
-  - Contributing: contributing.md
-</code></pre>
-<p>Suggested page stubs:</p>
-<ul>
-<li><code>docs/index.md</code> — project pitch + single left logo.</li>
-<li><code>docs/quickstart.md</code> — <code>pip install</code> + <code>lyapunov-lab start</code> + simulator.</li>
-<li><code>docs/features.md</code> — the walkthrough with images (Section 4).</li>
-<li><code>docs/configuration.md</code> — env vars, WS URL, static mount, ports.</li>
-<li><code>docs/backend-api.md</code> — endpoints &amp; schemas (Section 5).</li>
-<li><code>docs/streaming.md</code> — UDP formats, microcontroller &amp; CSV simulator.</li>
-<li><code>docs/cli.md</code> — command/flags.</li>
-<li><code>docs/troubleshooting.md</code> — common pitfalls (CORS, UDP blocked, CSV format).</li>
-<li><code>docs/contributing.md</code> — dev setup, code style, tests, release.</li>
-</ul>
-<blockquote>
-<p>Keep <strong>build commands</strong> for maintainers in <code>CONTRIBUTING.md</code>; the public docs describe <em>usage</em>, not how to build the docs themselves.</p>
-</blockquote>
-<hr />
-<h2 id="9-repo-layout-short">9) Repo Layout (short)</h2>
+<h2 id="8-repo-layout-short">8) Repo Layout (short)<a class="headerlink" href="#8-repo-layout-short" title="Permanent link">&para;</a></h2>
 <pre><code>lyapunov_lab/
   backend/app.py        # FastAPI app, UDP→WS bridge, SINDy &amp; ESN endpoints
   frontend/out/         # static export served at '/'
@@ -448,51 +899,60 @@ docs/
 <li><a href="https://www.sciencedirect.com/science/article/pii/S3050517825000711">https://www.sciencedirect.com/science/article/pii/S3050517825000711</a></li>
 <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S3050517825000711">https://www.sciencedirect.com/science/article/abs/pii/S3050517825000711</a></li>
 </ul>
-<blockquote>
-<p><strong>Note:</strong> As requested, the README omits maintainer‑oriented <em>build‑the‑docs</em> steps, but the <strong>documentation site</strong> structure above is ready for publishing.</p>
-</blockquote>
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div><footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
           
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-    
-  </span>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = ".";</script>
-    <script src="js/theme_extra.js"></script>
-    <script src="js/theme.js"></script>
-      <script src="search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
 </html>
-
-<!--
-MkDocs version : 1.6.1
-Build Date UTC : 2025-11-11 10:26:34.843656+00:00
--->
